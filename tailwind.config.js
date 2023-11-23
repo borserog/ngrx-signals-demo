@@ -8,7 +8,10 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
+    fontFamily: {
+      sans: ['Inter', 'arial'],
+    },
     extend: {},
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
