@@ -1,46 +1,27 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthStore } from '../store/auth.store';
 
 @Component({
-  selector: 'angular-ngrx-signal-store-login',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
-  template: `
-    <form
-      class="flex flex-col w-fit"
-      [formGroup]="loginForm"
-      (ngSubmit)="submitLogin()"
-    >
-      <label>
-        <span class="label">e-mail</span>
-        <input
-          class="input input-bordered"
-          type="text"
-          formControlName="email"
-        />
-      </label>
-      <label>
-        <span class="label">Password</span>
-        <input
-          class="input input-bordered"
-          type="password"
-          formControlName="password"
-        />
-      </label>
-      <button class="btn-primary btn mt-12">Login</button>
-    </form>
-  `,
+  templateUrl: 'login.component.html',
   styles: ``,
 })
 export class LoginComponent {
+  readonly authStore = inject(AuthStore);
   readonly fb = inject(FormBuilder);
   readonly loginForm = this.fb.group({
-    email: '',
-    password: '',
+    email: 'john.doe@example.com',
+    password: '123',
   });
 
   submitLogin() {
-    alert(JSON.stringify(this.loginForm.value, undefined, 2));
+    this.authStore.requestLogin({
+      email: this.loginForm.value.email as string,
+      password: this.loginForm.value.password as string,
+    });
   }
 }

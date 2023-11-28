@@ -1,0 +1,36 @@
+<form
+  class="flex flex-col w-full max-w-md m-auto"
+  [formGroup]="loginForm"
+  (ngSubmit)="submitLogin()"
+>
+  <h1 class="text-3xl font-bold mb-10 text-center">Login</h1>
+
+  <label>
+    <span class="label">e-mail</span>
+    <input
+      class="input input-bordered w-full"
+      type="text"
+      formControlName="email"
+    />
+  </label>
+  <label>
+    <span class="label">Password</span>
+    <input
+      class="input input-bordered w-full"
+      type="password"
+      formControlName="password"
+    />
+  </label>
+
+  <button class="btn-primary btn mt-12">
+    @if (authStore.isLoading()) {
+    <span class="flex flex-row justify-center items-center gap-3"
+      ><span class="loading loading-spinner"></span>Logging in</span
+    >
+    } @else { Submit }
+  </button>
+
+  @if (authStore.error(); as error) {
+  <small class="text-warning mt-6">{{ error }}</small>
+  }
+</form>

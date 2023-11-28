@@ -1,0 +1,25 @@
+<div class="navbar bg-gradient-to-r justify-center from-green-900 to-green-950">
+  <div class="w-full max-w-4xl flex flex-row justify-center">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">Signal Store</a>
+    </div>
+    @if (user() !== null) {
+    <div class="flex flex-row items-center gap-4">
+      <p>{{ user()?.name }}</p>
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img alt="user profile picture" [src]="user()?.profilePicture" />
+          </div>
+        </label>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-900 rounded-box w-52"
+        >
+          <li><a (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    }
+  </div>
+</div>

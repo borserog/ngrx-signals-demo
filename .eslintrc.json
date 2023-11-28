@@ -14,7 +14,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "angularNgrxSignalStore",
+            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -22,7 +22,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "angular-ngrx-signal-store",
+            "prefix": "app",
             "style": "kebab-case"
           }
         ]
