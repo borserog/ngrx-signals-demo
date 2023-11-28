@@ -6,8 +6,14 @@ export const authGuard: CanActivateFn = (route, state) => {
   const isAuthenticated = inject(AuthStore).isAuthenticated();
   const router = inject(Router);
 
-  if (!isAuthenticated) {
+  console.log(route, state);
+
+  if (!isAuthenticated && state.url !== '/') {
     return router.parseUrl('');
+  }
+
+  if (isAuthenticated && state.url === '/') {
+    return router.parseUrl('home');
   }
 
   return true;
